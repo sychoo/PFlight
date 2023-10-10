@@ -26,7 +26,7 @@ machine MavSDK
                 // send bMonitor, eLinkInitialized;
                 // send mMonitor, eLinkInitialized;
                 send controller, eLinkInitialized;
-                // goto WaitForReq;
+                goto WaitForReq;
             // }
             // else
             // {
@@ -85,8 +85,8 @@ machine MavSDK
             var status: float;
             var check_battery: float;
             check_battery = BatteryRemaining();
-            status = 0.0;
-            
+            // status = 0.0;
+            send controller, eRespBatteryRemaining, check_battery;
             // send bMonitor, eRespBatteryRemaining, status;
         }
         // on eReqHold do 

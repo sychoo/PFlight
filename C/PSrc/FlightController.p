@@ -32,7 +32,7 @@ event eReqBatteryRemaining;
 // event eRespSystemStatus : bool;
 // event eRespTakeoff : bool;
 // event eRespMissionUpload : bool;
-// event eRespBatteryRemaining : float;
+event eRespBatteryRemaining : float;
 // event eRespHold : bool;
 // event eRespReturnToLaunch : bool;
 // event eRespMissionFinished : bool;
@@ -70,9 +70,9 @@ machine FlightController
             send mavsdk, eReqBatteryRemaining;
             receive
             {
-                case eBatteryRemaining: (bstate: tBatteryState)
+                case eRespBatteryRemaining: (batterylevel: float)
                 {
-                    if(bstate == CRITICAL)
+                    if(batterylevel < 10.0)
                     {
                         goto Shutdown;
                     }

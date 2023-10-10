@@ -12,6 +12,7 @@
 #include <thread>
 #include <chrono>
 #include <cstdint>
+#include <time.h>
 
 // auto _mavsdk = std::make_unique<mavsdk::Mavsdk>();
 // std::shared_ptr<mavsdk::System> _system;
@@ -185,6 +186,7 @@ PRT_VALUE* PTMP_tmp2_20 = NULL;
 
 PRT_VALUE* P_BatteryRemaining_IMPL(PRT_MACHINEINST* context, PRT_VALUE*** argRefs)
 {
+     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     // mavlink_message_t message;
     // mavlink_command_long_t set_mode = {0};
      
@@ -223,7 +225,7 @@ PRT_VALUE* P_BatteryRemaining_IMPL(PRT_MACHINEINST* context, PRT_VALUE*** argRef
     // }
     // return PrtMkFloatValue((PRT_FLOAT)fut.get());
     printf("Hello, world!\n");
-    return PrtMkFloatValue((PRT_FLOAT)0.0f);
+    return PrtMkFloatValue((PRT_FLOAT)5.0f);
 }
 
 
