@@ -1,3 +1,34 @@
+# Updated Installation Guide
+
+Step 1: code generation
+```
+    cd C
+    pc -proj:FlightSystem.pproj
+```
+
+Step 2: build P language C static library
+```
+    cd Ext/P/Src
+    cmake -DCMAKE_INSTALL_PREFIX=../../../build/P/install -B../../../build/P -H.
+    cmake --build ../../../build/P 
+```
+
+Step 3: build MAVLink headers
+```
+    # refer to https://github.com/mavlink/mavlink
+    cd Ext/mavlink
+    cmake -H. -DCMAKE_INSTALL_PREFIX=../../build/mavlink/install -B../../build/mavlink -DMAVLINK_DIALECT=ardupilotmega -DMAVLINK_VERSION=2.0
+    cmake --build ../../build/mavlink --target install
+
+```
+Step 4: build FlightSystem C program
+```
+    mkdir -p build/FlightSystem
+    cd build/FlightSystem
+    cmake -DCMAKE_PREFIX_PATH=../mavlink/install/lib/cmake/MAVLink/ ../../C
+    make -j$(nproc --all)
+```
+
 # PFlight 
 
 ![Ubuntu Build Status](https://github.com/VUISIS/PFlight/actions/workflows/ubuntuci.yml/badge.svg)

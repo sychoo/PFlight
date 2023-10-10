@@ -6,10 +6,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions(-DPRT_PLAT_LINUXUSER)
 
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/../build/mavlink/install/lib/cmake/MAVLink")
 # list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/../build/MAVSDK/install/lib/cmake/MAVSDK")
 
 #find_package(MAVSDK CONFIG REQUIRED)
 find_package(Threads REQUIRED)
+find_package(MAVLink CONFIG REQUIRED) # MAVLink protocol
 
 set(SRC
     main.cpp
@@ -70,5 +72,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/PGenerated
 target_link_libraries(${PROJECT_NAME} PUBLIC ${P_LIB})
 target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
 target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBH_LIB})
+target_link_libraries(${PROJECT_NAME} PUBLIC MAVLink::mavlink) # Link MAVLink Libraries
 # target_link_libraries(${PROJECT_NAME} PUBLIC ${TINYXML_LIB})
 # target_link_libraries(${PROJECT_NAME} PUBLIC MAVSDK::mavsdk)
