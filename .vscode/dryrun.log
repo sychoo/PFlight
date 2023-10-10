@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/rockita/Code/vspells/PFlight'
+ 
+make: Leaving directory `/Users/rockita/Code/vspells/PFlight'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
