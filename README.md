@@ -29,6 +29,10 @@ Step 4: build FlightSystem C program
     make -j$(nproc --all)
 ```
 
+# Pitfall 
+- sometimes when things are being sent, nothing will be displayed on the screen. 
+- monitor the output of MAVproxy or enable the `receive_some` function in the FlightSystem
+
 # PFlight 
 
 ![Ubuntu Build Status](https://github.com/VUISIS/PFlight/actions/workflows/ubuntuci.yml/badge.svg)
